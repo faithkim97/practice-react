@@ -9,19 +9,6 @@ class ShoppingList extends Component {
 	}
 
 
-	renderFood(i) {
-		return(
-			<Food
-				value={this.props.value[i]}
-				disabled={this.props.disabled}
-				onClick={this.props.onClick(i)}
-			/>
-
-		);
-
-	}
-
-
 	render() {
 		const items = this.props.value.map((item, index) => {
 			return <Food
@@ -29,9 +16,8 @@ class ShoppingList extends Component {
 				disabled={this.props.disabled}
 				onClick={this.props.onClick(index)}
 			/>
-
 		});
-
+		
 		return (
 
 			<div>
