@@ -87,6 +87,8 @@ class GroceryCalculator extends Component {
 			}]),
 			totalCost: newCost,
 		});
+
+		console.log("grocList: " + this.state.grocList);
 	}
 
 	handleNewItem(e) {
@@ -94,7 +96,7 @@ class GroceryCalculator extends Component {
 	}
 
 	handleNewPrice(e) {
-		this.setState({newPrice: e.target.value});
+		this.setState({newPrice: parseFloat(e.target.value)});
 	}
 
 	render() {
