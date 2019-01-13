@@ -23,11 +23,19 @@ class ShoppingList extends Component {
 
 
 	render() {
+		const items = this.props.value.map((item, index) => {
+			return <Food
+				value={item}
+				disabled={this.props.disabled}
+				onClick={this.props.onClick(index)}
+			/>
+
+		});
+
 		return (
+
 			<div>
-				{this.renderFood(0)}
-				{this.renderFood(1)}
-				{this.renderFood(2)}
+				{items}
 
 			</div>
 		);
