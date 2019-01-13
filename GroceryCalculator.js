@@ -7,6 +7,15 @@ function sum(a,b) {
 	return a+b;
 }
 
+function indexItem(item, list) {
+	for (let i = 0; i < list.length; i++) {
+		if (list[i].name === item) {
+			return i;
+		}
+	}
+	return -1;
+}
+
 
 
 function createBuyMap(currList) {
@@ -78,11 +87,18 @@ class GroceryCalculator extends Component {
 		const currList = this.state.grocList.slice();
 		const {newItem, newPrice, newAmount} = this.state;
 		const newCost = sum(this.state.totalCost, newPrice);
-		currList.push({
-			name: newItem,
-			price: newPrice,
-			amount: newAmount + 1,
-		});
+
+		const hasItemIndex = indexItem(newItem, currList);
+		if (hasItemIndex > -1) {
+			currList[hasItemIndex].amount += 1;
+		} else {
+			currList.push({
+				name: newItem,
+				price: newPrice,
+				amount: newAmount + 1,
+			});
+		}
+
 
 		this.setState({
 			grocList: currList,
@@ -100,8 +116,8 @@ class GroceryCalculator extends Component {
 	}
 
 	render() {
-		const currList = this.state.grocList.slice();
 
+		const currList = this.state.grocList.slice();
 		const buyMap = createBuyMap(currList);
 		const isDisableBut = this.state.disableButtons;
 		return(
