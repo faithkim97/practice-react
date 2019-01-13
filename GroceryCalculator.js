@@ -78,17 +78,17 @@ class GroceryCalculator extends Component {
 		const currList = this.state.grocList.slice();
 		const {newItem, newPrice, newAmount} = this.state;
 		const newCost = sum(this.state.totalCost, newPrice);
-		console.log(currList.length);
+		currList.push({
+			name: newItem,
+			price: newPrice,
+			amount: newAmount + 1,
+		});
+
 		this.setState({
-			grocList: currList.concat([{
-				name: newItem,
-				price: newPrice,
-				amount: newAmount + 1,
-			}]),
+			grocList: currList,
 			totalCost: newCost,
 		});
 
-		console.log("grocList: " + this.state.grocList);
 	}
 
 	handleNewItem(e) {
@@ -101,6 +101,7 @@ class GroceryCalculator extends Component {
 
 	render() {
 		const currList = this.state.grocList.slice();
+
 		const buyMap = createBuyMap(currList);
 		const isDisableBut = this.state.disableButtons;
 		return(
